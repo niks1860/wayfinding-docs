@@ -1,0 +1,195 @@
+get:
+  summary: Photo Route
+  operationId: visitPhotoRoute
+  tags:
+    - Shortest Route
+  description: |
+    This URL path is a HTML endpoint and It points to a Photo Route website.
+    
+    It can be used to quickly check shortest path between start and
+    end destinations on mobile or as a wayfinding portal for generating QR codes
+    or short URL link representing pre-configured route between different destinations .
+    
+    In addition to displaying route photos between selected destinations, 
+    it also displays additional information like direction on each photo using an icon, 
+    text instruction in selected language and optional extra information along the route.
+    
+    ### Examples
+    Here are few examples with different query parameter combinations
+    #### Mobile View
+    ```
+    GET /photo-route?buildingId=13&routeLang=en&nodeFrom=756-11362&nodeTo=821-11383&WheelChair=true
+    ```
+      ![Photo Route For mobile screens](/images/photo-route-mobile.png)
+
+    <br>
+    
+    #### Wayfinding Portal (For Desktop/Laptop screens)
+    The wayfinding portal is typically a web page to be accessed from any 
+    desktop/laptop computer. Typically to be used by staffed computers
+    ```
+    GET /photo-route?buildingId=13&homepage=true
+    ```
+    ![Photo Route For mobile screens](/images/photo-route-portal.png)
+
+    <br>
+
+    #### Enable multi-building selection
+    In case you want to show multiple buildings on the portal page
+    (with an additional dropdown for selecting the building) use the follow format.
+    ```
+    GET /photo-route?buildingId=13&homepage=true&MultiBuilding=11;18;33
+    ```
+    The value of `MultiBuilding` is the semi-colon seperated list of `buildingId`
+    of the buildings selected from the dropdown for navigation.
+
+    <br>
+
+    #### Fix start
+    Use this with `nodeFrom` parameter to lock and hide starting point input box.
+        
+    This is typically used on self-service kiosks to block the option to change
+    the starting point, as the kiosk is a fixed location in the wayfinding model.
+    ```
+    GET /photo-route?buildingId=13&homepage=true&fixStart=true&nodeFrom=756-11362
+    ```
+
+    <br>
+
+    #### Channel for analytics
+    In order to keep track of on what channel the URL has been loaded,
+    use channel parameter. The value of the channel parameter is free-format string,
+    i.e. you can pass any arbitrary name of your choosing as a channel name.
+
+    Use different channel names to track the nature or purpose
+    of how or where a route was loaded.
+    Routes loaded on on different channels can be tracked in CMS portal.
+    ```
+    GET /photo-route?buildingId=13&homepage=true&channel=webportal
+    ```
+    Here are few example values for `channel` parameter
+    that can be used for different purposes
+
+    | Channel value                             | Use case |
+    | ----------------------------------------- | -------- |
+    | "webportal"                               | When loading the application from patient web portal |
+    | "ios_home" or "android_home"              | When loading the application from a home screen of a native patient app |
+    | "ios_app-int" or "android_app-int"        | When loading a single route of the application from an appointment screen |
+    | "ios_app-int_today" or "ios_app-int_prev" | Custom name |
+
+    **Note:** You can also create some logic on your side to create a dynamic channel parameter value.
+    For example depending on the time/day it is loaded;
+    the day of the appoinment or a day before the appointment.
+    For example, in javascript
+    ```
+    if (currentDate < appointmentDay) {
+        channel = "ios_app-int_prep"
+    } else {
+        channel = "ios_app-int_today"
+    }
+    ```
+
+    <br>
+
+    > **Note:** See below for explanation for each individual query parameter.
+
+  parameters: 
+    - name: buildingId
+      in: query
+      required: true
+      description: The ID of the building for navigation
+      example: 13
+      schema: 
+        type: string
+    - name: routeLang
+      in: query
+      description: |
+        IETF code for language.
+
+        You can check available languages for this building in CMS or select the language from dropdown on the page.
+      examples:
+        French:
+          summary: For French language
+          value:
+            routeLang: fr
+        Arabic:
+          summary: For Arabic language
+          value:
+            routeLang: ar
+      schema: 
+        type: string
+    - name: nodeFrom
+      in: query
+      description: |
+        Start destination of the route.
+
+        The value is in the format "{nodeID}-{destinationID}"
+      examples:
+        821-11383:
+          summary: For destination with destinationId=821 and nodeId=11383
+          value:
+            nodeFrom: 821-11383
+      schema: 
+        type: string
+    - name: nodeTo
+      in: query
+      description: |
+        End destination of the route.
+        
+        The value is in the format "{nodeID}-{destinationID}"
+      examples:
+       756-11362:
+          summary: For destination with destinationId=821 and nodeId=11383
+          value:
+            nodeTo: 756-11362
+      schema: 
+        type: string
+    - name: WheelChair
+      in: query
+      description: |
+        Enable wheelchair mode.
+        Get route tailered for people with phisical impairment
+      schema: 
+        type: boolean
+    - name: homepage
+      in: query
+      description: Set to true to enable wayfinding portal
+      schema: 
+        type: boolean
+    - name: fixStart
+      in: query
+      description: |
+        Use this with nodeFrom parameter to lock and hide starting point input box.
+      examples:
+        fixStart:
+          summary: To fix destination 756-11362 as starting destination
+          value:
+            nodeFrom=756-11362&fixStart: true
+          description: |
+            This will lock the destination 756-11362 and hide the dropdown box
+            for selecting starting destination
+      schema: 
+        type: boolean
+    - name: MultiBuilding
+      in: query
+      description: |
+        Semi-colon seperated list of building IDs
+      schema: 
+        type: array
+        items: 
+          type: string
+      example: 11;13;15
+    - name: channel
+      in: query
+      description: |
+        Name of the channel
+      schema: 
+        type: string
+      example: webportal
+  responses: 
+    200:
+      description: Web page for Photo Route
+      content:
+        text/html:
+          schema:
+            contentMediaType: html

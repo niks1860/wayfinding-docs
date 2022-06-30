@@ -1,0 +1,16 @@
+type: array
+description: |
+  Location category list with associated names in different language
+items: 
+  type: object
+  properties:
+    id:
+      type: number
+      description: The uniq destination category ID
+    name:
+      description: Name of this destination category in different languages
+      type: object
+      additionalProperties: false
+      patternProperties:
+        ^[a-z]{2}$:
+          type: string

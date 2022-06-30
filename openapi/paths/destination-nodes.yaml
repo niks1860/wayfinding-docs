@@ -1,0 +1,28 @@
+get: 
+  summary: Location List
+  operationId: getDestinationNodes
+  tags: 
+    -  Related Information (JSON)
+  description: |
+    Get all destination names for every locationID available for a particular building,
+    and associated language translations, categories and nodeIDs these destination belong to
+    and search keywords for these destination names
+  parameters: 
+    - name: buildingId
+      in: query
+      required: true
+      schema: 
+        type: string
+        example: 13
+  responses: 
+    200:
+      description: Location list for a building
+      content: 
+        application/json: 
+          schema: 
+            $ref: ../components/schemas/DestinationNodesResponse.yaml
+          examples:
+            sample:
+              description: Sample response is truncated for brevity
+              value:
+                $ref: ../components/examples/destination-nodes-response.yaml

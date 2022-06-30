@@ -1,0 +1,81 @@
+get: 
+  summary: Route Information (JSON)
+  operationId: getShortestPath
+  tags: 
+    - Shortest Route
+  description: |
+    Get shortest path between two destinations.
+  parameters: 
+    - name: buildingId
+      in: query
+      required: true
+      description: Building ID
+      example: 13
+      schema: 
+        type: string
+    - name: nodeFrom
+      in: query
+      required: true
+      description: Node ID of the starting point
+      example: 822
+      schema: 
+        type: string
+    - name: destinationFrom
+      in: query
+      description: Destination ID of the starting point
+      example: 11384
+      schema: 
+        type: string
+    - name: nodeTo
+      in: query
+      required: true
+      description: Node ID of the ending point
+      example: 964
+      schema: 
+        type: string
+    - name: destinationTo
+      in: query
+      description: Destination ID of the ending point
+      example: 11349
+      schema: 
+        type: string
+    - name: routeLang
+      in: query
+      example: fr
+      description: |
+        IETF code for the language \
+        The route instructions will use this provided language
+        if given otherwise default building language.
+      schema: 
+        type: string
+        maxLength: 2
+        minLength: 2
+    - name: isWhellchair
+      in: query
+      example: true
+      description: Enable wheelchair mode for people with physical impairment
+      schema: 
+        type: boolean
+  responses: 
+    200:
+      description: The shortest photo route
+      content: 
+        application/json:
+          schema: 
+            $ref: ../components/schemas/PathfinderResponse.yaml
+          examples:
+            sample:
+              description: Sample response is truncated for brevity
+              value: 
+                $ref: ../components/examples/pathfinder-response.yaml
+    404:
+      description: No connecting route found between given two destinations
+      content: 
+        application/json:
+          schema: 
+            $ref: ../components/schemas/Error.yaml
+          example:
+            statusCode: 404
+            name: error
+            message: No path
+            

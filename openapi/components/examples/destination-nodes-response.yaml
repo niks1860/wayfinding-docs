@@ -1,0 +1,18 @@
+[
+  {
+    "destinationId": 1,
+    "nodeIds": [18],
+    "name": { "de": ["Urologie"], "en": ["Urology"], "nl": ["Urologie"] },
+    "categoryIds": [5],
+    "typeIds": [1],
+    "keywords": {},
+  },
+  {
+    "destinationId": 2,
+    "nodeIds": [109],
+    "name": { "de": ["Radiologie"], "en": ["Radiology"], "nl": ["Radiologie"] },
+    "categoryIds": [5],
+    "typeIds": [1],
+    "keywords": {},
+  },
+]

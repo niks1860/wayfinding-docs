@@ -1,0 +1,41 @@
+type: object
+description: Path data connecting two neighbour nodes
+additionalProperties: false
+properties:
+  id:
+    type: number
+    description: Photo ID
+  count:
+    type: number
+    description: The count of the this photo in edge
+  photo:
+    type: string
+    format: uri
+    description: The URL of the photo
+  icon:
+    type: string
+    description: The URL of icon for direction for this photo
+  pathLength:
+    type: number
+    description: The length of this path segment
+  instruction:
+    type: string
+    description: the distance towards the next photo in the unit meters or foot
+  secondaryInstruction:
+    type: string
+    description: |
+      Secondary navigation instruction in text. This applies only at a navigation step that
+      entails getting off a level changing entity (elevator, escalator, stairs) and only then when a photo is attached
+      to the outgoing edge
+  advertisementI18n:
+    type: array
+    description: This is a multi-lingual location based message, that applies to this navigation step
+    items:
+      additionalProperties: false
+      properties:
+        languageIETF:
+          type: string
+          description: Language of the advertisement text
+        text:
+          type: string
+          description: Text of the advertisement in given language

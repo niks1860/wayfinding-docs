@@ -1,0 +1,38 @@
+type: object
+description: Shortest route between two destiantions with photos
+additionalProperties: false
+properties:
+  buildingId:
+    type: string
+    description: The building ID
+  language:
+    type: string
+    description: The IETF code for the lanugate of instructions
+    maxLength: 2
+    minLength: 2
+  wheelchairMode:
+    type: boolean
+    description: Wether route is calculated for people with physical impairment
+    default: false
+  qr:
+    type: string
+    description: |
+      Base64 encoded QR code image which represents the photo route URL to load this path
+  time:
+    type: number
+    description: Estimated walking time for the whole journey in minutes
+  distance:
+    type: number
+    description: The total distance of this route between two destinations
+  unit:
+    type: string
+    enum: [meters, foot]
+    description: The unit of the distances used in this route data
+  statisticId:
+    type: number
+    description: The id of the analytics data for this route
+  data:
+    type: array
+    description: The photo route data
+    items:
+      $ref: ./PathfinderData.yaml

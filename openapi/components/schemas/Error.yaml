@@ -1,0 +1,12 @@
+type: object
+properties:
+  statusCode:
+    type: number
+    description: Error code
+  name:
+    type: string
+    description: Problem type
+  message:
+    type: string
+    description: Description of the error
+  

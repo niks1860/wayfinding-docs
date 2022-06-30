@@ -1,0 +1,26 @@
+get: 
+  summary: Location category List
+  operationId: getCategoryList
+  tags: 
+    -  Related Information (JSON)
+  description: |
+    Get all destination categories that are assigned to the building
+  parameters: 
+    - name: buildingId
+      in: query
+      required: true
+      schema: 
+        type: string
+        example: 13
+  responses: 
+    200:
+      description: Location list for a building
+      content: 
+        application/json: 
+          schema: 
+            $ref: ../components/schemas/CategoriesResponse.yaml
+          examples:
+            sample:
+              description: Sample response is truncated for brevity
+              value:
+                $ref: ../components/examples/categories-response.yaml

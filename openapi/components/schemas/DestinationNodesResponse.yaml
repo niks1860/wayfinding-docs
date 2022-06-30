@@ -1,0 +1,32 @@
+type: array
+description: |
+  Location list with associated Node IDs, Categories IDs, Destination Type IDs
+  and names translations for differen languages
+items: 
+  type: object
+  properties:
+    destinationId:
+      type: number
+      description: The uniq destiantion ID
+    nodeIds:
+      description: List of Node IDs, this destination is associated with
+      items:
+        type: number
+    name:
+      description: Name of this destination in different languages
+      type: object
+      additionalProperties: false
+      patternProperties:
+        ^[a-z]{2}$:
+          type: string
+    categoryIds:
+      description: List of Category IDs, this destination is associated with
+      items: 
+        type: number
+    typeIds:
+      description: List of Destination Type Ids, this destination belongs to
+      items: 
+        type: number
+    keywords:
+      description: Search keywords
+      type: object

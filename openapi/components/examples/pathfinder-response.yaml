@@ -1,0 +1,44 @@
+{
+    "buildinId": "13",
+    "language": "fr",
+    "wheelchairMode": true,
+    "startPoint": "822",
+    "endPoint": "964",
+    "time": 7,
+    "distance": 334,
+    "unit": "meters",
+    "qr": "data:image/png;base64,iVBORw0KGgoAAAANSUhEU...",
+    "statisticId": 343334,
+    "data": [
+        {
+            "connectionId": 1901,
+            "id": 1063,
+            "count": 1,
+            "photo": "https://stage-k8.atobe.app:443/api/storages/building-13/download/141_139_1_1462956901.jpg",
+            "icon": "https://stage-k8.atobe.app:443/api/storages/pathfinder/download/260.png",
+            "pathLength": 5,
+            "advertisementI18n": [],
+            "instruction": "Allez à droite"
+        },
+        {
+            "connectionId": 2038,
+            "id": 1090,
+            "count": 1,
+            "photo": "https://stage-k8.atobe.app:443/api/storages/building-13/download/139_145_1_1462957149.jpg",
+            "icon": "https://stage-k8.atobe.app:443/api/storages/pathfinder/download/0.png",
+            "pathLength": 4,
+            "advertisementI18n": [],
+            "instruction": "Continuez tout droit"
+        },
+        {
+            "connectionId": 2038,
+            "id": 1519,
+            "count": 2,
+            "photo": "https://stage-k8.atobe.app:443/api/storages/building-13/download/139_145_2_1462957161.jpg",
+            "icon": "https://stage-k8.atobe.app:443/api/storages/pathfinder/download/90.png",
+            "pathLength": 15,
+            "advertisementI18n": [],
+            "instruction": "Allez à gauche"
+        },
+    ]
+}

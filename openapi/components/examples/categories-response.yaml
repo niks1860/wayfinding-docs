@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "name":
+      {
+        "de": "Eingang / Ausgang",
+        "en": "Entrances / Exits",
+        "nl": "Ingangen / uitgangen",
+      },
+  },
+  {
+    "id": 3,
+    "name": { "de": "Toiletten", "en": "Restrooms", "nl": "Toiletten" },
+  },
+  {
+    "id": 4,
+    "name":
+      {
+        "de": "Kinderbetreuung",
+        "en": "Inpatient Units",
+        "nl": "Verpleegafdelingen",
+      },
+  },
+  {
+    "id": 5,
+    "name":
+      {
+        "de": "Medizinische Dienste",
+        "en": "Clinics / Medical Services",
+        "nl": "Poliklinieken / functieafdelingen",
+      },
+  },
+]
